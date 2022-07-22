@@ -1,0 +1,27 @@
+
+
+#Build markup keyboard
+
+ 1. select category using colors
+ 2. each categ has group of emtion
+    categs is identified by color
+    e.g
+      red => sad, angry
+      green => happy
+
+ 3. take selected emtion then highlight circle
+ 4. reply with same keyboard again (back to step 1)
+    ask if user wants to add any other emtion on same circle
+
+ *Keyboard should contain done button
+ *Keyboard should contain Start over button
+ *Inline should be supported
+
+#Circle map
+
+ 1. Get pixel coordinates of every emtion
+ 2. Make a big list with emtion and their coords
+ 3. Craft small circle filled with same emtion color use as Highlight
+ 4. Paste crafted circle to emtion coords
+ 5. Try to preserve jpeg quality 
+
