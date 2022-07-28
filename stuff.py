@@ -7,7 +7,7 @@ app_hash = os.getenv("app_hash", "")
 
 x = datetime.datetime.utcnow()
 i = x + datetime.timedelta()
-y = i.strftime("%Y-%m-%d_%I:%M%P")
+y = i.strftime("%Y-%m-%d")
 print(y)
 print("My PID is:", os.getpid())
 
@@ -39,8 +39,9 @@ help_text = """ Hi %s,
 
 Welcome to **@bryll_youtubedl_bot** 👋
 
-This bot was made to help people generate Emotion circles to express
-thier feelings that can help other people to easily understand
+This bot was made to help people generate
+Emotion circles to express thier feelings
+that can help other people to easily understand
 thier Emotion state.
 
 Start by clicking the **Feelings** Button
@@ -51,14 +52,6 @@ Look at the circle and find what Emotion you want
 
 Click the **color** that your Emotion belongs to
 
-Next select the **Emotion**
-
-If you want to select one more Emotion Select a **color**
-
-Else Click **Done**
-
-If you selected something wrong Click **Start Over**
-
 Next Forward the circle to your friend Or
 
 Long click the photo and **Save to Gallery**
@@ -67,7 +60,8 @@ Cheers"""
 
 
 msg0 = "Hello, **Please Select a Color** use the circle as a reference"
-msg1=  "**Please Select an Emotion**"
+msg1 = "Please Select, **How you feel right now**"
+msg2 = "Select a Color **If you want to add another Highlight**,\nElse click done Then forward the photo to your friend"
 
 logger1 = "**New user!!**"
 logger2 = "**User Says**:\n\n"
