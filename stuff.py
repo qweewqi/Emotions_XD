@@ -37,7 +37,7 @@ start_msg1 = "I can help generate Emotion circles and save you precious time, **
 
 help_text = """ Hi %s,
 
-Welcome to **@bryll_youtubedl_bot** 👋
+Welcome to **@Emotions_XD_bot** 👋
 
 This bot was made to help people generate
 Emotion circles to express thier feelings
