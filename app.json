@@ -1,0 +1,21 @@
+{
+  "name": "Emotions_XD",
+  "repository": "https://github.com/Justxd22/Emotions_XD",
+  "keywords": [
+    "Emotions","XD"
+  ],
+  "env":{
+  "token": {
+    "required": true,
+    "description": "Your telegram bot token get from bot father"
+  },
+  "app_id": {
+    "required": true,
+    "description": "Your app id"
+  },
+  "app_hash": {
+    "required": true,
+    "description": "Your app hash"
+  }
+}}
+
