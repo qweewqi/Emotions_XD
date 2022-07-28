@@ -1,4 +1,4 @@
-# Moneroo _XD
+# Emotions_XD
 
 
 Code for the telegram bot [@Emotions_XD_bot](https://t.me/Emotions_XD_bot)
@@ -15,7 +15,7 @@ enjoy :)
 
 
 # Setup
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/?referralCode=4_MSke)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/hLa9q8?referralCode=4_MSke)
 [![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Justxd22/Emotions_XD)
 
 ### Railway
