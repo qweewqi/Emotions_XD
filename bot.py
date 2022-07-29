@@ -170,6 +170,7 @@ async def inlines(client, message):
             reply_markup=ckey)
         ]
     await message.answer(answer)
+    await logger(client, message, logger5)
 
 # just a looging function
 async def logger(c, m, msg, text=""):
