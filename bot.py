@@ -119,6 +119,7 @@ async def highlight(client,message,index):
     circle.paste(highlight, (round(pos[0])-10,round(pos[1])-10), highlight)
     finalc = BytesIO()
     circle.save(finalc, quality=100, format="jpeg")
+    finalc.name = "feel.jpg"
     tasks[message.from_user.id] = finalc
     await delete(client, message)
     await reply_photo(client, message, finalc, msg2, finalckey)
