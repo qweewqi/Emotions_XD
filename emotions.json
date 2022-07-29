@@ -96,7 +96,7 @@
     "Surprised": {"index":84, "color":"lightpurple", "pos":[487.37, 529.25]},
     "Startled": {"index":85, "color":"purple", "pos":[401.99, 352.54]},
     "Confused": {"index":86, "color":"purple", "pos":[356.11, 384.56]},
-    "Amazed": {"index":86, "color":"purple", "pos":[324.64, 432.11]},
+    "Amazed": {"index":130, "color":"purple", "pos":[324.64, 432.11]},
     "Excited": {"index":87, "color":"purple", "pos":[299.42, 487.25]},
     "Shocked": {"index":88, "color":"lightpurple", "pos":[282.85, 170.17]},
     "Dismayed": {"index":89, "color":"lightpurple", "pos":[246.64, 196.27]},
