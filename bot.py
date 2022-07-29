@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultPhoto, InputMediaPhoto
 from stuff import *
 from random import randint
 from io import BytesIO
@@ -106,7 +106,7 @@ def getname(client,message):
 
 @eme.on_message(filters.private & filters.command("feelings") | filters.regex("🔴 Feelings"))
 async def feelings(client, message):
-    await message.reply_photo('assets/feelswheel.jpg', caption=msg0, reply_markup=ckey)
+    await reply_photo(client, message, 'assets/feelswheel.jpg', msg0, ckey)
     await logger(client, message, "New request!")
 
 async def highlight(client,message,index):
@@ -120,8 +120,8 @@ async def highlight(client,message,index):
     finalc = BytesIO()
     circle.save(finalc, quality=100, format="jpeg")
     tasks[message.from_user.id] = finalc
-    await message.message.delete()
-    await message.message.reply_photo(photo=finalc, caption=msg2, reply_markup=finalckey)
+    await delete(client, message)
+    await reply_photo(client, message, finalc, msg2, finalckey)
 
 @eme.on_callback_query()
 async def calls(client, message):
@@ -132,7 +132,7 @@ async def calls(client, message):
 
     if "del" in data:
        await message.answer()
-       await message.message.delete()
+       await delete(client, message)
 
     elif "back" in data:
        await message.answer()
@@ -140,28 +140,83 @@ async def calls(client, message):
            circle = tasks[message.from_user.id]
            msg = msg2; keyb = finalckey
        except KeyError: msg = msg0; keyb = ckey
-       await message.message.edit(text=msg,reply_markup=keyb)
+       await edit(client, message, msg, keyb)
 
     elif "done" in data:
        await message.answer()
-       await message.message.edit(text=None,reply_markup=None)
+       await edit(client, message, None, None)
+       tasks.pop(message.from_user.id)
 
     elif "wfs" in data: # wfs = want feelings
        color, _ = data.split("|")
        await message.answer()
-       await message.message.edit(text=msg1,reply_markup=fkey[color])
+       await edit(client, message, msg1, fkey[color])
 
     elif "mkh" in data: # mkh = make highlight
        index, _ = data.split("|")
        await message.answer()
        await highlight(client,message,int(index))
 
+@eme.on_inline_query()
+async def inlines(client, message):
+    print("new inline query", message.query)
+    answer = [
+        InlineQueryResultPhoto(
+            title="Feelings Wheel",
+            description=inline_msg,
+            photo_url="https://telegra.ph/file/3bf1f29a14a6546b76077.jpg",
+            caption=msg0,
+            reply_markup=ckey)
+        ]
+    await message.answer(answer)
+
 # just a looging function
 async def logger(c, m, msg, text=""):
+    if not logGroup: return
     client = c; message = m;
     ms = msg + text + f"\n\n{message.from_user.first_name} {message.from_user.last_name} @{message.from_user.username} {message.from_user.id} {message.from_user.mention}"
-    print(ms)
-#    await client.send_message(logGroup, ms, disable_web_page_preview=True)
+    await client.send_message(logGroup, ms, disable_web_page_preview=True)
 
+
+### Message reply tools ###
+
+async def reply_photo(c, m, p, t, k):
+    inline = is_inline(m)
+    if inline:
+       # Because of bug in pyrogram
+       # BytesIO object cant be used as input
+       # so we save photo from memory to disk
+       # then upload from disk
+#       with open(f"{m.from_user.id}.jpg", 'wb') as f: f.write(p.getbuffer())
+#       media = InputMediaPhoto(f"{m.from_user.id}.jpg")
+#     Edit i'm using a pyrogram fork that temp fixes the problem
+       media = InputMediaPhoto(p)
+       await c.edit_inline_media(m.inline_message_id, media)
+       await c.edit_inline_caption(m.inline_message_id, caption=t, reply_markup=k)
+#       try: os.remove(f"{m.from_user.id}.jpg")
+#       except: pass
+    else:
+       try: m = m.message
+       except AttributeError: m = m
+       await m.reply_photo(p, caption=t, reply_markup=k)
+
+async def edit(c, m, t, k):
+    inline = is_inline(m)
+    if inline:
+       await c.edit_inline_caption(m.inline_message_id, t, reply_markup=k)
+    else: await m.message.edit_text(t, reply_markup=k)
+
+async def delete(c, m):
+    inline = is_inline(m)
+    if inline:
+       await c.edit_inline_caption(m.inline_message_id, None, reply_markup=None)
+    else: await m.message.delete()
+
+def is_inline(m):
+    try:
+       id = m.inline_message_id
+       return True if id else False
+    except Exception as e:
+       return False
 
 eme.run()

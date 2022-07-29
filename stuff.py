@@ -35,6 +35,8 @@ fthl = "CAACAgEAAxkBAAEDhMhhv1eWCc2bLbg8V5ZW2w7v5lVz0QAClQEAAjT0-UWjXL_zWuG_FiME
 start_msg0 = "Hi human,"
 start_msg1 = "I can help generate Emotion circles and save you precious time, **Start by clicking Feelings button** or check out the Help"
 
+inline_msg = "I can help generate Emotion circles and save you precious time, **Click this message to Start**"
+
 help_text = """ Hi %s,
 
 Welcome to **@Emotions_XD_bot** 👋

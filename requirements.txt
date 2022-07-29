@@ -1,3 +1,5 @@
-pyrogram
+#pyrogram
+# we're using pyrogram fork because of inline bug
+./lib/Pyrogram-2.0.35-py3-none-any.whl
 tgcrypto
 pillow
