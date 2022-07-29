@@ -4,6 +4,7 @@ from pyrogram.types import ReplyKeyboardMarkup
 token = os.getenv("token", "")
 app_id = os.getenv("app_id", "")
 app_hash = os.getenv("app_hash", "")
+logGroup = os.getenv("logGroup", "")
 
 x = datetime.datetime.utcnow()
 i = x + datetime.timedelta()
@@ -13,8 +14,6 @@ print("My PID is:", os.getpid())
 
 
 if len(str(token)) < 5: print("please put your token in env"); sys.exit(1)
-
-logGroup = -1001593847613
 
 keybd = ReplyKeyboardMarkup([
      ['🤖 Start', '🔴 Feelings'],
